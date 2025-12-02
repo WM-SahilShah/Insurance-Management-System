@@ -1,0 +1,15 @@
+# Build outputs
+/target
+
+# VCS and IDE
+.git
+.gitignore
+.vscode
+.idea
+*.iml
+
+# Logs
+*.log
+
+# Docker metadata
+.dockerignore
