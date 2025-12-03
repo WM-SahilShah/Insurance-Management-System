@@ -8,7 +8,6 @@ import java.util.Set;
 
 import javax.crypto.SecretKey;
 
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,12 +15,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class JwtGenraterTokanFilter extends OncePerRequestFilter{
+public class JwtGeneratorTokenFilter extends OncePerRequestFilter{
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -67,7 +67,7 @@ public class JwtGenraterTokanFilter extends OncePerRequestFilter{
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 
-		return !request.getServletPath().equals("/signIn");
+		return !request.getServletPath().equals("/login");
 	}
 
 }

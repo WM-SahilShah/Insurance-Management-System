@@ -13,10 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.wm.dto.ClientDto;
 
-
 @Service
 public class ClientUserDetailsService implements UserDetailsService{
-
 
 	@Autowired
 	private ClientService clientService;

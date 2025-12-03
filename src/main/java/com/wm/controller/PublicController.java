@@ -1,9 +1,7 @@
 package com.wm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,23 +18,21 @@ public class PublicController {
 	@Autowired
 	private ClientService clientService;
 
-	@GetMapping("/signIn")
-	public ResponseEntity<ClientDto>  getLoggedInClientDetailsHandler(Authentication auth ){
-
-		ClientDto client = clientService.findByEmail(auth.getName());
-		return new ResponseEntity<ClientDto>(client, HttpStatus.OK);
-	}
-
-
 	@GetMapping("/welcome")
-	public String welcomeHandeler() {
-		return "Welcome to Insurance manegement system";
+	public ResponseEntity<String> welcomeHandeler() {
+		String html = "<html><head><title>Welcome</title></head><body>"
+				+ "<h1>Welcome to Insurance Management System</h1>"
+				+ "<p><a href=\"/signup\">Sign Up</a> | <a href=\"/login\">Log In</a></p>"
+				+ "</body></html>";
+		return ResponseEntity.ok().header("Content-Type", "text/html; charset=UTF-8").body(html);
 	}
 
 
-	@PostMapping("/register")
-	public ResponseEntity<ClientDto> createClient(@Valid @RequestBody ClientDto client){
-	return new ResponseEntity<ClientDto>(clientService.addClient(client),HttpStatus.CREATED);
+	@PostMapping("/signup")
+	public ResponseEntity<Void> signupClient(@Valid @RequestBody ClientDto client){
+		clientService.addClient(client);
+		// Redirect to /login with a query param that frontend can use to show a small bubble
+		return ResponseEntity.status(302).header("Location", "/login?signup=success").build();
 	}
 
 }

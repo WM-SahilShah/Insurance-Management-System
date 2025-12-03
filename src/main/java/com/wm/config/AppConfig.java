@@ -1,6 +1,5 @@
 package com.wm.config;
 
-
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,14 +37,16 @@ public class AppConfig {
 		.csrf().disable()
 		.authorizeHttpRequests()
 		.requestMatchers("/swagger-ui*/**",  "/v3/api-docs/**").permitAll()
-		.requestMatchers(HttpMethod.POST, "/api/clients/","/login").permitAll()
+		.requestMatchers(HttpMethod.POST, "/api/clients/","/login","/signup").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()
-		.addFilterAfter(new JwtGenraterTokanFilter(), BasicAuthenticationFilter.class)
-		.addFilterBefore(new JwtTokanValideterFilter(), BasicAuthenticationFilter.class)
+		.addFilterAfter(new JwtGeneratorTokenFilter(), BasicAuthenticationFilter.class)
+		.addFilterBefore(new JwtTokenValidatorFilter(), BasicAuthenticationFilter.class)
 		.csrf().disable()
-		.formLogin()
+		.exceptionHandling().authenticationEntryPoint((req, res, authEx) -> res.sendRedirect("/welcome"))
+		.and()
+		.formLogin().loginProcessingUrl("/login")
 		.and()
 		.httpBasic();
 
@@ -54,14 +55,11 @@ public class AppConfig {
 	}
 
 
-
-
-
-
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
 
 	@Bean
 	public ModelMapper mapper() {

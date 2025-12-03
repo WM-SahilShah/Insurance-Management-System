@@ -7,11 +7,6 @@ import java.util.Set;
 
 import com.wm.model.Client;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -48,4 +43,5 @@ public class InsurancePolicyDto {
     private Client client;
 
     private Set<ClaimDto> claims = new HashSet<>();
+
 }

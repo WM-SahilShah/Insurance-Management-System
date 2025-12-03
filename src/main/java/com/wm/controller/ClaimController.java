@@ -1,8 +1,6 @@
 package com.wm.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Spliterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,9 +26,6 @@ public class ClaimController {
 
 	@Autowired
 	private ClaimService claimService;
-
-
-
 
 	@PostMapping("/{id}")
 	public ResponseEntity<Claim> createClaim(@PathVariable("id") Integer id,@Valid @RequestBody ClaimDto claim){

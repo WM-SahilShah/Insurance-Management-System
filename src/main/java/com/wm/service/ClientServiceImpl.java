@@ -2,7 +2,6 @@ package com.wm.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -63,7 +62,6 @@ public class ClientServiceImpl implements ClientService {
 	public ClientDto updateClientInfo(ClientDto client, Integer clientId) {
 		if (client.getEmail() != null)
 			throw new ResourceNotFoundException("email not changeble plese remove email in json data...");
-
 		Client prevClient = clientRepository.findById(clientId)
 				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + clientId));
 		Client updatedClient = modelMapper.map(client, Client.class);
@@ -79,9 +77,6 @@ public class ClientServiceImpl implements ClientService {
 		Client client = clientRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Client ", "clientId", "" + id));
 		clientRepository.delete(client);
-
 		return "Client Data deleted successfully...";
-
 	}
-
 }

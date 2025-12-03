@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -60,6 +61,6 @@ public class InsurancePolicy {
     private Client client;
 
     @OneToMany(mappedBy = "policy",cascade = CascadeType.ALL)
-    private Set<Claim> claims = new HashSet();
+    private Set<Claim> claims = new HashSet<>();
 
 }

@@ -1,7 +1,6 @@
 package com.wm.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -71,11 +70,11 @@ public class InsurancePolicyServiceImpl implements InsurancePolicyService {
 
 	@Override
 	public InsurancePolicyDto assignPolicyWithUser(Integer clientId, Integer policyId) {
-		Client client =modelMapper.map(clientService.findById(clientId),Client.class);
-		InsurancePolicyDto policy = modelMapper.map(getById(policyId),InsurancePolicyDto.class);
-//		policy.setClient(client);
-		 InsurancePolicyDto updateInsurancePolcy = updateInsurancePolcy(policy, policyId);
-		 return modelMapper.map(updateInsurancePolcy, InsurancePolicyDto.class);
+		Client client = modelMapper.map(clientService.findById(clientId), Client.class);
+		InsurancePolicyDto policy = modelMapper.map(getById(policyId), InsurancePolicyDto.class);
+		policy.setClient(client);
+		InsurancePolicyDto updatedPolicy = updateInsurancePolcy(policy, policyId);
+		return updatedPolicy;
 	}
 
 	@Override

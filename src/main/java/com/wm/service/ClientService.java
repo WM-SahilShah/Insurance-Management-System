@@ -3,12 +3,10 @@ package com.wm.service;
 import java.util.List;
 
 import com.wm.dto.ClientDto;
-import com.wm.model.Client;
 
 public interface ClientService {
 
 	/**
-	 *
 	 * @param client: this is provide all information about client like name email address password extra
 	 * @return : return type client info also this is return saved information in database.
 	 * first came client info and this client info save in database and return this.
@@ -16,7 +14,6 @@ public interface ClientService {
 	ClientDto addClient(ClientDto client);
 
 	/**
-	 *
 	 * @param id: this para is client id in client we are first check this client id able in database or not
 	 * if client id not able in database then throw a particular exception. if able then fetch all about client
 	 * about information
@@ -26,7 +23,6 @@ public interface ClientService {
 
 
 	/**
-	 *
 	 * @param email: this para is client email in client we are first check this client email able in database or not
 	 * if client email not able in database then throw a particular exception. if able then fetch all about client
 	 * about information
@@ -35,7 +31,6 @@ public interface ClientService {
 	ClientDto findByEmail(String email);
 
 	/**
-	 *
 	 * @return: in this method return all Client information in a list.
 	 */
 	List<ClientDto>  findAllClient();
@@ -52,7 +47,6 @@ public interface ClientService {
 	ClientDto updateClientInfo(ClientDto client, Integer clientId);
 
 	/**
-	 *
 	 * @param idthis para is client id in client we are first check this client id able in database or not
 	 * if client id not able in database then throw a particular exception. if able then fetch all about client
 	 * about information
@@ -62,6 +56,5 @@ public interface ClientService {
 	 * @return :String type return is one type msg send like data delete successfully.
 	 */
 	String deleteClient(Integer id);
-
 
 }

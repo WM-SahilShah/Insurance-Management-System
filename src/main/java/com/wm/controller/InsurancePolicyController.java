@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wm.dto.InsurancePolicyDto;
-import com.wm.model.InsurancePolicy;
 import com.wm.service.InsurancePolicyService;
 
 import jakarta.validation.Valid;
@@ -32,7 +31,6 @@ public class InsurancePolicyController {
 	public ResponseEntity<InsurancePolicyDto> createdInsurancePolicy(@Valid @RequestBody InsurancePolicyDto insurancePolicy, @PathVariable("ClientId") Integer ClientId){
 		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.createNewInsurancePolicy(ClientId,insurancePolicy),HttpStatus.CREATED);
 	}
-
 
 
 	@PutMapping("/{id}")
@@ -52,22 +50,10 @@ public class InsurancePolicyController {
 		return new ResponseEntity<InsurancePolicyDto>(insurancePolicyService.getById(id),HttpStatus.OK);
 	}
 
+
 	@GetMapping("/")
 	public ResponseEntity<List<InsurancePolicyDto>> getAllInsurancePolicy(){
 		return new ResponseEntity<List<InsurancePolicyDto>>(insurancePolicyService.getAllInsurancePolicy(),HttpStatus.OK);
 	}
-
-
-//	@PutMapping("/{clientId}/{policyId}")
-//	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(@PathVariable("clientId") Integer clientId,@PathVariable("policyId") Integer policyId){
-//		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(clientId, policyId),HttpStatus.OK);
-//	}
-
-//	@PutMapping("/")
-//	public ResponseEntity<InsurancePolicy> assignInsurancePolicy(){
-//		return new ResponseEntity<InsurancePolicy>(insurancePolicyService.assignPolicyWithUser(1,1),HttpStatus.OK);
-//	}
-
-
 
 }

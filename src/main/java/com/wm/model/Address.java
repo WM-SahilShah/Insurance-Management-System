@@ -1,7 +1,7 @@
 package com.wm.model;
 
-
 import jakarta.persistence.Embeddable;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
