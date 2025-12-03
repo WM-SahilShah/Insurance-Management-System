@@ -4,11 +4,11 @@ WORKDIR /app
 
 # Pre-fetch dependencies for faster incremental builds
 COPY pom.xml .
-RUN --mount=type=cache,target=/root/.m2 mvn -B -q -DskipTests dependency:go-offline
+RUN --mount=type=cache,id=maven-repo,target=/root/.m2 mvn -B -q -DskipTests dependency:go-offline
 
 # Copy sources and build
 COPY src ./src
-RUN --mount=type=cache,target=/root/.m2 mvn -B -q -DskipTests package
+RUN --mount=type=cache,id=maven-repo,target=/root/.m2 mvn -B -q -DskipTests package
 
 # ---- Runtime stage ----
 FROM eclipse-temurin:17-jre
